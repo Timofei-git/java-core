@@ -2,9 +2,9 @@ name: Java CI with Gradle  # Название вашего workflow
 
 on:  # Определяет, когда будет запускаться workflow
   push:
-    branches: [ main, feature/* ]  # При push в ветку main или любую feature-ветку
+    branches: [ master, feature/* ]  # При push в ветку main или любую feature-ветку
   pull_request:
-    branches: [ main ]  # При создании PR в main
+    branches: [ master ]  # При создании PR в main
 
 jobs:  # Задачи, которые будут выполняться
   build:  # Название задачи
