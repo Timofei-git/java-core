@@ -39,7 +39,7 @@ public class NumberGuessingGame {
         do {
             int attempts = playRound();
             updateStatistics(attempts);
-        }while(askPlayAgain());
+        } while (askPlayAgain());
         showStatistics();
     }
 
@@ -62,7 +62,7 @@ public class NumberGuessingGame {
             System.out.println("Enter a number: ");
             if (!scanner.hasNextInt()) {
                 System.out.println("Please enter an integer");
-                scanner.next(); // пропускаем некорректный ввод
+                scanner.next();
                 continue;
             }
 
@@ -76,11 +76,11 @@ public class NumberGuessingGame {
             if (number == secretNumber){
                 guessed= true;
                 System.out.println("Congratulations! You guessed the number " + secretNumber + " in " + attempts + " attempts");
-            }else{
+            } else {
                 String result = (number > secretNumber)?"I guessed a number greater" : "I guessed a number less";
                 System.out.println(result);
             }
-        }while(guessed!=true);
+        } while (guessed!=true);
 
         return attempts;
     }
