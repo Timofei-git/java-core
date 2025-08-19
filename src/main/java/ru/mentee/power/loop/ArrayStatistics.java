@@ -1,18 +1,16 @@
 package ru.mentee.power.loop;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ArrayStatistics {
 
     // Массив с данными для анализа
     private final int[] data;
 
-    final int ERROR = -1;
+    private static final int ERROR = -1;
 
     /**
-     * Конструктор класса
+     * Конструктор класса.
      *
      * @param data массив целых чисел для анализа
      */
@@ -22,13 +20,15 @@ public class ArrayStatistics {
     }
 
     /**
-     * Возвращает минимальное значение в массиве
+     * Возвращает минимальное значение в массиве.
      *
      * @return минимальное значение или Integer.MAX_VALUE, если массив пуст
      */
     public int findMin() {
         int check = check();
-        if (check==ERROR)return ERROR;
+        if (check == ERROR) {
+            return ERROR;
+        }
 
         int min = data[0];
         for (int value : data) {
@@ -40,13 +40,16 @@ public class ArrayStatistics {
     }
 
     /**
-     * Возвращает максимальное значение в массиве
+     * Возвращает максимальное значение в массиве.
      *
      * @return максимальное значение или Integer.MIN_VALUE, если массив пуст
      */
     public int findMax() {
         int check = check();
-        if (check==ERROR)return ERROR;
+        if (check == ERROR) {
+            return ERROR;
+        }
+
         int max = data[0];
         for (int value : data) {
             if (value > max) {
@@ -57,45 +60,50 @@ public class ArrayStatistics {
     }
 
     /**
-     * Вычисляет сумму всех элементов массива
+     * Вычисляет сумму всех элементов массива.
      *
      * @return сумма элементов
      */
     public int calculateSum() {
-        // TODO: Реализовать метод
         int check = check();
-        if (check==ERROR)return ERROR;
+        if (check == ERROR) {
+            return ERROR;
+        }
+
         int sum = 0;
-        for (int value:data){
-            sum+=value;
+        for (int value : data) {
+            sum += value;
         }
         return sum;
     }
 
     /**
-     * Вычисляет среднее арифметическое элементов массива
+     * Вычисляет среднее арифметическое элементов массива.
      *
      * @return среднее арифметическое или 0, если массив пуст
      */
     public double calculateAverage() {
-        // TODO: Реализовать метод
         int check = check();
-        if (check==ERROR)return ERROR;
+        if (check == ERROR) {
+            return ERROR;
+        }
+
         int sum = calculateSum();
-        double average = (double) sum/data.length;
-        return average;
+        return (double) sum / data.length;
     }
 
     /**
-     * Вычисляет медиану массива (среднее значение после сортировки)
+     * Вычисляет медиану массива (среднее значение после сортировки).
      *
      * @return медиана или 0, если массив пуст
      */
     public double calculateMedian() {
         int check = check();
-        if (check==ERROR)return ERROR;
+        if (check == ERROR) {
+            return ERROR;
+        }
 
-       for (int i = 0; i < data.length; i++) {
+        for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data.length - 1; j++) {
                 if (data[j] > data[j + 1]) {
                     int temp = data[j];
@@ -106,7 +114,6 @@ public class ArrayStatistics {
         }
 
         int mid = data.length / 2;
-
         if (data.length % 2 == 0) {
             return (data[mid - 1] + data[mid]) / 2.0;
         } else {
@@ -114,120 +121,140 @@ public class ArrayStatistics {
         }
     }
 
-
     /**
-     * Находит моду массива (наиболее часто встречающееся значение)
-     * Если таких значений несколько, возвращает наименьшее из них
+     * Находит моду массива (наиболее часто встречающееся значение).
+     * Если таких значений несколько, возвращает наименьшее из них.
      *
      * @return мода или 0, если массив пуст
      */
     public int findMode() {
-        // TODO: Реализовать метод
         int check = check();
-        if (check==ERROR)return ERROR;
-        int count, max_count = 0, max_number = Integer.MAX_VALUE;
-        for (int i = 0;i < data.length; i++){
+        if (check == ERROR) {
+            return ERROR;
+        }
+
+        int count, maxCount = 0, maxNumber = Integer.MAX_VALUE;
+        for (int i = 0; i < data.length; i++) {
             count = 0;
-            for (int j = 0;j < data.length; j++){
-                if (data[i]==data[j]){
+            for (int j = 0; j < data.length; j++) {
+                if (data[i] == data[j]) {
                     count++;
                 }
-                if (max_count < count) {
-                    max_count = count;
-                    max_number = data[i];
-                } else if (max_count == count) {
-                    if(max_number > data[i]){
-                        max_number = data[i];
+                if (maxCount < count) {
+                    maxCount = count;
+                    maxNumber = data[i];
+                } else if (maxCount == count) {
+                    if (maxNumber > data[i]) {
+                        maxNumber = data[i];
                     }
                 }
             }
         }
-        return max_number;
+        return maxNumber;
     }
 
     /**
-     * Вычисляет стандартное отклонение элементов массива
+     * Вычисляет стандартное отклонение элементов массива.
      *
-     * @return стандартное отклонение или 0, если массив пуст или содержит менее 2 элементов
+     * @return стандартное отклонение или ERROR, если массив пуст или содержит менее 2 элементов
      */
     public double calculateStandardDeviation() {
-        // TODO: Реализовать метод
         int check = check();
-        if (check==ERROR)return ERROR;
-        if (data.length<2)return ERROR;
+        if (check == ERROR) {
+            return ERROR;
+        }
+        if (data.length < 2) {
+            return ERROR;
+        }
+
         double average = calculateAverage();
         double sum = 0.0;
-
         for (int value : data) {
             double diff = value - average;
             sum += diff * diff;
         }
-
         return Math.sqrt(sum / data.length);
     }
 
     /**
-     * Подсчитывает количество элементов, больших заданного значения
+     * Подсчитывает количество элементов, больших заданного значения.
      *
      * @param value значение для сравнения
      * @return количество элементов, больших value
      */
     public int countGreaterThan(int value) {
-        // TODO: Реализовать метод
         int check = check();
-        if (check==ERROR)return ERROR;
+        if (check == ERROR) {
+            return ERROR;
+        }
+
         int count = 0;
-        for (int num : data){
-            if (num > value)count++;
+        for (int num : data) {
+            if (num > value) {
+                count++;
+            }
         }
         return count;
     }
 
     /**
-     * Подсчитывает количество элементов, меньших заданного значения
+     * Подсчитывает количество элементов, меньших заданного значения.
      *
      * @param value значение для сравнения
      * @return количество элементов, меньших value
      */
     public int countLessThan(int value) {
-        int count = 0;
         int check = check();
-        if (check==ERROR)return ERROR;
-        for (int num : data){
-            if (num < value)count++;
+        if (check == ERROR) {
+            return ERROR;
+        }
+
+        int count = 0;
+        for (int num : data) {
+            if (num < value) {
+                count++;
+            }
         }
         return count;
     }
 
     /**
-     * Проверяет, содержит ли массив заданное значение
+     * Проверяет, содержит ли массив заданное значение.
      *
      * @param value искомое значение
      * @return true, если значение найдено, иначе false
      */
     public boolean contains(int value) {
-        // TODO: Реализовать метод
         int check = check();
-        if (check==ERROR)return false;
-        for (int num:data){
-            if (num==value)return true;
+        if (check == ERROR) {
+            return false;
+        }
+
+        for (int num : data) {
+            if (num == value) {
+                return true;
+            }
         }
         return false;
     }
 
-    public int check(){
-        if (data.length==0) return ERROR;
-        int count = 0;
-        for (int value:data){
-            if (value<0)count++;
+    private int check() {
+        if (data.length == 0) {
+            return ERROR;
         }
-        if (count == data.length)return ERROR;
+        int count = 0;
+        for (int value : data) {
+            if (value < 0) {
+                count++;
+            }
+        }
+        if (count == data.length) {
+            return ERROR;
+        }
         return 1;
     }
 
-    /**
-     * Выводит статистический отчет по массиву
-     */
+    /** Выводит статистический отчет по массиву. */
     public void printStatisticsReport() {
         System.out.println("===== Statistical Report =====");
         System.out.println("Array size: " + data.length);
@@ -242,14 +269,12 @@ public class ArrayStatistics {
     }
 
     public static void main(String[] args) {
-        // Пример использования
         int[] testData = {5, 7, 2, 9, 3, 5, 1, 8, 5, 6};
         ArrayStatistics stats = new ArrayStatistics(testData);
 
         System.out.println("Initial array: " + Arrays.toString(testData));
         stats.printStatisticsReport();
 
-        // Примеры использования отдельных методов
         System.out.println("Elements greater than 5: " + stats.countGreaterThan(5));
         System.out.println("Elements less than 5: " + stats.countLessThan(5));
         System.out.println("Array contains 7: " + stats.contains(7));
