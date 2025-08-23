@@ -116,7 +116,8 @@ public class DataFormatter {
         if (date == null || pattern == null) {
             return "";
         }
-        return new SimpleDateFormat(pattern).format(date);
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        return sdf.format(date);
     }
 
     /**
@@ -127,6 +128,7 @@ public class DataFormatter {
      */
     public static String format(List<String> items) {
         // TODO: Реализуйте метод
+        if (items == null) return "";
         String result = String.join(", ", items);
         return result;
     }
