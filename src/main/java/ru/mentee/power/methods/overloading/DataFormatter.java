@@ -116,7 +116,8 @@ public class DataFormatter {
         if (date == null || pattern == null) {
             return "";
         }
-        return new SimpleDateFormat(pattern).format(date);
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.ENGLISH);
+        return sdf.format(date).toLowerCase(Locale.ENGLISH);
     }
 
     /**
