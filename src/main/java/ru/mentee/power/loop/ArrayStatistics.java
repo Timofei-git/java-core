@@ -10,7 +10,7 @@ public class ArrayStatistics {
     private static final int ERROR = -1;
 
     /**
-     * Конструктор класса.
+     * Конструктор класса
      *
      * @param data массив целых чисел для анализа
      */
@@ -20,7 +20,7 @@ public class ArrayStatistics {
     }
 
     /**
-     * Возвращает минимальное значение в массиве.
+     * Возвращает минимальное значение в массиве
      *
      * @return минимальное значение или Integer.MAX_VALUE, если массив пуст
      */
@@ -40,7 +40,7 @@ public class ArrayStatistics {
     }
 
     /**
-     * Возвращает максимальное значение в массиве.
+     * Возвращает максимальное значение в массиве
      *
      * @return максимальное значение или Integer.MIN_VALUE, если массив пуст
      */
@@ -60,7 +60,7 @@ public class ArrayStatistics {
     }
 
     /**
-     * Вычисляет сумму всех элементов массива.
+     * Вычисляет сумму всех элементов массива
      *
      * @return сумма элементов
      */
@@ -78,7 +78,7 @@ public class ArrayStatistics {
     }
 
     /**
-     * Вычисляет среднее арифметическое элементов массива.
+     * Вычисляет среднее арифметическое элементов массива
      *
      * @return среднее арифметическое или 0, если массив пуст
      */
@@ -93,7 +93,7 @@ public class ArrayStatistics {
     }
 
     /**
-     * Вычисляет медиану массива (среднее значение после сортировки).
+     * Вычисляет медиану массива (среднее значение после сортировки)
      *
      * @return медиана или 0, если массив пуст
      */
@@ -122,8 +122,8 @@ public class ArrayStatistics {
     }
 
     /**
-     * Находит моду массива (наиболее часто встречающееся значение).
-     * Если таких значений несколько, возвращает наименьшее из них.
+     * Находит моду массива (наиболее часто встречающееся значение)
+     * Если таких значений несколько, возвращает наименьшее из них
      *
      * @return мода или 0, если массив пуст
      */
@@ -154,9 +154,9 @@ public class ArrayStatistics {
     }
 
     /**
-     * Вычисляет стандартное отклонение элементов массива.
+     * Вычисляет стандартное отклонение элементов массива
      *
-     * @return стандартное отклонение или ERROR, если массив пуст или содержит менее 2 элементов
+     * @return стандартное отклонение или 0, если массив пуст или содержит менее 2 элементов
      */
     public double calculateStandardDeviation() {
         int check = check();
@@ -177,7 +177,7 @@ public class ArrayStatistics {
     }
 
     /**
-     * Подсчитывает количество элементов, больших заданного значения.
+     * Подсчитывает количество элементов, больших заданного значения
      *
      * @param value значение для сравнения
      * @return количество элементов, больших value
@@ -198,7 +198,7 @@ public class ArrayStatistics {
     }
 
     /**
-     * Подсчитывает количество элементов, меньших заданного значения.
+     * Подсчитывает количество элементов, меньших заданного значения
      *
      * @param value значение для сравнения
      * @return количество элементов, меньших value
@@ -219,7 +219,7 @@ public class ArrayStatistics {
     }
 
     /**
-     * Проверяет, содержит ли массив заданное значение.
+     * Проверяет, содержит ли массив заданное значение
      *
      * @param value искомое значение
      * @return true, если значение найдено, иначе false
@@ -254,7 +254,9 @@ public class ArrayStatistics {
         return 1;
     }
 
-    /** Выводит статистический отчет по массиву. */
+    /**
+     * Выводит статистический отчет по массиву
+     */
     public void printStatisticsReport() {
         System.out.println("===== Statistical Report =====");
         System.out.println("Array size: " + data.length);
@@ -269,12 +271,14 @@ public class ArrayStatistics {
     }
 
     public static void main(String[] args) {
+        // Пример использования
         int[] testData = {5, 7, 2, 9, 3, 5, 1, 8, 5, 6};
         ArrayStatistics stats = new ArrayStatistics(testData);
 
         System.out.println("Initial array: " + Arrays.toString(testData));
         stats.printStatisticsReport();
 
+        // Примеры использования отдельных методов
         System.out.println("Elements greater than 5: " + stats.countGreaterThan(5));
         System.out.println("Elements less than 5: " + stats.countLessThan(5));
         System.out.println("Array contains 7: " + stats.contains(7));
