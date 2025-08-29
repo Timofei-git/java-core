@@ -5,108 +5,62 @@ import java.util.Date;
 import java.util.List;
 import java.util.Collections;
 
-/**
- * Класс для управления задачами
- */
 public class TaskManager {
     private List<Task> tasks;
     private int nextId = 1;
 
-    /**
-     * Конструктор
-     */
     public TaskManager() {
         tasks = new ArrayList<>();
     }
 
-    /**
-     * Добавление задачи с полным набором параметров
-     */
-    public Task addTask(String title, String description, Date dueDate, Task.Priority priority) {
-        // TODO: Создать задачу с текущим ID, добавить в список и увеличить nextId
+   public Task addTask(String title, String description, Date dueDate, Task.Priority priority) {
         Task task = new Task(nextId, title, description, dueDate, priority);
-
         nextId++;
-
-
         tasks.add(task);
         return task;
     }
 
-    /**
-     * Добавление задачи только с названием (перегрузка)
-     */
-    public Task addTask(String title) {
-        // TODO: Вызвать более полный метод с дефолтными значениями
+   public Task addTask(String title) {
         Task task = new Task(nextId, title);
-
         nextId++;
-
         tasks.add(task);
         return task;
     }
 
-    /**
-     * Добавление задачи с названием и описанием (перегрузка)
-     */
-    public Task addTask(String title, String description) {
-        // TODO: Вызвать более полный метод с дефолтными значениями
+     public Task addTask(String title, String description) {
         Task task = new Task(nextId, title, description);
-
         nextId++;
-
         tasks.add(task);
         return task;
     }
 
-    /**
-     * Получение задачи по ID
-     */
-    public Task getTaskById(int id) {
-        // TODO: Найти и вернуть задачу с указанным ID
-
+   public Task getTaskById(int id) {
         for (Task task:tasks) {
             if (id == task.getId()) return task;
         }
         return null;
     }
 
-    /**
-     * Удаление задачи по ID
-     */
     public boolean removeTask(int id) {
-        // TODO: Найти и удалить задачу с указанным ID
         Task task = getTaskById(id);
         if (task == null) return false;
         tasks.remove(task);
         return true;
     }
 
-    /**
-     * Маркировка задачи как выполненной
-     */
     public boolean markTaskAsCompleted(int id) {
-        // TODO: Найти задачу и вызвать её метод markAsCompleted()
         Task task = getTaskById(id);
         if (task == null) return false;
         task.markAsCompleted();
         return true;
     }
 
-    /**
-     * Получение всех задач
-     */
     public List<Task> getAllTasks() {
-        // TODO: Вернуть копию списка всех задач
         if (tasks == null) return null;
         return new ArrayList<>(tasks);
     }
 
-    /**
-     * Получение выполненных задач
-     */
     public List<Task> getCompletedTasks() {
-        // TODO: Вернуть список задач, где completed == true
         if (tasks == null) return null;
         List<Task> completed = new ArrayList<>();
         for (Task task : tasks) {
@@ -117,11 +71,7 @@ public class TaskManager {
         return completed;
     }
 
-    /**
-     * Получение невыполненных задач
-     */
-    public List<Task> getIncompleteTasks() {
-        // TODO: Вернуть список задач, где completed == false
+   public List<Task> getIncompleteTasks() {
         if (tasks == null) return null;
         List<Task> incompleted = new ArrayList<>();
         for (Task task : tasks) {
@@ -132,11 +82,7 @@ public class TaskManager {
         return incompleted;
     }
 
-    /**
-     * Получение просроченных задач
-     */
-    public List<Task> getOverdueTasks() {
-        // TODO: Вернуть список задач, где isOverdue() == true
+   public List<Task> getOverdueTasks() {
         if (tasks == null) return null;
         List<Task> overdue = new ArrayList<>();
         for (Task task : tasks) {
@@ -147,11 +93,7 @@ public class TaskManager {
         return overdue;
     }
 
-    /**
-     * Получение задач с заданным приоритетом
-     */
-    public List<Task> getTasksByPriority(Task.Priority priority) {
-        // TODO: Вернуть список задач с указанным приоритетом
+   public List<Task> getTasksByPriority(Task.Priority priority) {
         if (tasks == null) return null;
         List<Task> tasksByPriority = new ArrayList<>();
         for (Task task : tasks) {
@@ -162,11 +104,7 @@ public class TaskManager {
         return tasksByPriority;
     }
 
-    /**
-     * Поиск задач по фрагменту названия или описания
-     */
-    public List<Task> searchTasks(String query) {
-        // TODO: Вернуть список задач, содержащих query в названии или описании
+   public List<Task> searchTasks(String query) {
         if (tasks == null)  return Collections.emptyList();
         List<Task> searchTasks = new ArrayList<>();
         for (Task task : tasks) {
@@ -178,12 +116,7 @@ public class TaskManager {
         return searchTasks;
     }
 
-    /**
-     * Сортировка задач по сроку выполнения
-     * Использует алгоритм сортировки пузырьком из блока циклов
-     */
     public List<Task> sortTasksByDueDate() {
-        // TODO: Реализовать сортировку  по дате выполнения
         if (tasks == null) return null;
         List<Task> sorted = new ArrayList<>();
         for (int i = 0;i < sorted.size() - 1;i++) {
@@ -200,10 +133,6 @@ public class TaskManager {
         return sorted;
     }
 
-    /**
-     * Сортировка задач по приоритету
-     * Использует алгоритм сортировки вставками из блока циклов
-     */
     public List<Task> sortTasksByPriority() {
         List<Task> sortedTasks = new ArrayList<>(tasks);
 
@@ -237,9 +166,6 @@ public class TaskManager {
     }
 
 
-    /**
-     * Вывод всех задач в консоль
-     */
     public void printAllTasks() {
         // TODO: Вывести все задачи в консоль в читаемом формате
         if (tasks == null) {
@@ -251,10 +177,7 @@ public class TaskManager {
         }
     }
 
-    /**
-     * Вывод задач с указанным заголовком
-     */
-    public void printTasks(List<Task> taskList, String header) {
+   public void printTasks(List<Task> taskList, String header) {
         // TODO: Вывести задачи из списка с заголовком
         if (tasks == null) {
             System.out.println("No tasks");

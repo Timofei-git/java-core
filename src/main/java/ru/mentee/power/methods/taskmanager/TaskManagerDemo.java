@@ -44,7 +44,6 @@ public class TaskManagerDemo {
         return calendar.getTime();
     }
 
-    // Метод для печати списка задач в нормальном виде
     private static void printTaskList(List<Task> tasks) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         for (Task task : tasks) {
