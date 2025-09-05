@@ -130,25 +130,6 @@ public class TaskManagerDemo {
         }
     }
 
-//    private static Date createDate(int year, int month, int day) {
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.set(year, month - 1, day);
-//        return calendar.getTime();
-//    }
-//
-//    private static void printTaskList(List<Task> tasks) {
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        for (Task task : tasks) {
-//            System.out.println(
-//                    "ID=" + task.getId() +
-//                            ", Title='" + task.getTitle() + "'" +
-//                            ", Due=" + sdf.format(task.getDueDate()) +
-//                            ", Priority=" + task.getPriority() +
-//                            ", Completed=" + task.isCompleted()
-//            );
-//        }
-//    }
-
     private static void initializeTasks() {
         // Let's add a couple of tasks to start with
         taskManager.addTask("Study exceptions", "Understand try-catch-finally", null, Task.Priority.HIGH);
